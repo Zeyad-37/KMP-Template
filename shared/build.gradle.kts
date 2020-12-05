@@ -36,7 +36,7 @@ kotlin {
     }
     sourceSets {
 
-        val ktorVersion = "1.4.0"
+        val ktorVersion = "1.4.1"
         val sqlDelightVersion = "1.4.3"
         val hiltVersion = "2.28-alpha"
 
