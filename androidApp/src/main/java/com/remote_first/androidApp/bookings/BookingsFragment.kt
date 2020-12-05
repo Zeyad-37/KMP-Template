@@ -43,7 +43,6 @@ class BookingsFragment : Fragment(R.layout.bookings_fragment) {
     }
 
     private fun BookingsFragmentBinding.bindState(state: BookingsState) {
-        requireActivity().title = getString(R.string.bookings)
     }
 
     private fun BookingsEffect.bindEffect() = Unit

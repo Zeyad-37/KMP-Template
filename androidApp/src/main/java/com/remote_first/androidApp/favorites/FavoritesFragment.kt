@@ -43,7 +43,6 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
     }
 
     private fun FavoritesFragmentBinding.bindState(state: FavoritesState) {
-        requireActivity().title = getString(R.string.favorites)
     }
 
     private fun FavoritesEffect.bindEffect() = Unit

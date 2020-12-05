@@ -67,7 +67,7 @@ class SpaceXFragment : Fragment(R.layout.space_x_fragment) {
 
     private fun SpaceXFragmentBinding.bindState(state: SpaceXState) {
         when (state) {
-            InitialState -> requireActivity().title = "SpaceX Launches"
+            InitialState -> Unit
             is FullState -> {
                 launchesRvAdapter?.launches = state.launches
                 launchesRvAdapter?.notifyDataSetChanged()

@@ -43,7 +43,6 @@ class NotificationsFragment : Fragment(R.layout.notifications_fragment) {
     }
 
     private fun NotificationsFragmentBinding.bindState(state: NotificationsState) {
-        requireActivity().title = getString(R.string.notifications)
     }
 
     private fun NotificationsEffect.bindEffect() = Unit

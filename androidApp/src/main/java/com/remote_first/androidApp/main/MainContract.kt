@@ -13,9 +13,10 @@ data class TabClicked(val tabId: Int): MainInput(false)
 data class MainState(
         val index: Int,
         val tabId: Int,
+        val title: String
 ) : State
 
 sealed class MainResult : Result
-data class TabClickResult(val index: Int, val tabId: Int) : MainResult()
+data class TabClickResult(val index: Int, val tabId: Int, val title: String) : MainResult()
 
 sealed class MainEffect : Effect

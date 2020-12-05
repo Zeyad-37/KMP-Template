@@ -43,7 +43,6 @@ class ExploreFragment : Fragment(R.layout.explore_fragment) {
     }
 
     private fun ExploreFragmentBinding.bindState(state: ExploreState) {
-        requireActivity().title = getString(R.string.explore_tab_title)
     }
 
     private fun ExploreEffect.bindEffect() = Unit

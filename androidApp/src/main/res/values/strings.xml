@@ -19,4 +19,5 @@
     <string name="summary">Summary</string>
     <string name="notifications">Notifications</string>
     <string name="explore_tab_title">Explore Spaces</string>
+    <string name="space_x_tab_title">SpaceX Launches</string>
 </resources>

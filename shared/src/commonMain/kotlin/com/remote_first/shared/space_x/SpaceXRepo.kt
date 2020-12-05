@@ -6,7 +6,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class SpaceXRepo @Inject constructor(private val database: Database, private val api: SpaceXApi) {
+class SpaceXRepo @Inject constructor(
+        private val database: Database,
+        private val api: SpaceXApi,
+        private val rocketLaunchDTOMapper: RocketLaunchDTOMapper,
+) {
 
     fun getLaunches(): Flow<List<RocketLaunch>> {
         return flow {
@@ -18,7 +22,7 @@ class SpaceXRepo @Inject constructor(private val database: Database, private val
                     database.clearDatabase()
                     database.createLaunches(it)
                 }
-            }.map { RocketLaunchDTOMapper.map(it) })
+            }.map { rocketLaunchDTOMapper.map(it) })
         }
     }
 }

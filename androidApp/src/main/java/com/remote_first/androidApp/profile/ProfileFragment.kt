@@ -43,7 +43,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
     private fun ProfileFragmentBinding.bindState(state: ProfileState) {
-        requireActivity().title = getString(R.string.profile)
     }
 
     private fun ProfileEffect.bindEffect() = Unit

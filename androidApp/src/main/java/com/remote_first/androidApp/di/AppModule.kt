@@ -1,11 +1,13 @@
 package com.remote_first.androidApp.di
 
 import android.content.Context
+import com.remote_first.androidApp.utils.ContextProvider
 import com.remote_first.shared.cache.AppDatabase
 import com.remote_first.shared.db.Database
 import com.remote_first.shared.db.DatabaseDriverFactory
 import com.remote_first.shared.network.HttpNetworkTransport
 import com.remote_first.shared.network.NetworkTransport
+import com.remote_first.shared.space_x.RocketLaunchDTOMapper
 import com.remote_first.shared.space_x.SpaceXApi
 import com.squareup.sqldelight.db.SqlDriver
 import comremotefirstsharedcache.AppDatabaseQueries
@@ -44,4 +46,10 @@ object AppModule {
 
     @Provides
     fun provideSpaceXApi(httpClient: HttpClient) = SpaceXApi(httpClient)
+
+    @Provides
+    fun provideRocketLaunchDTOMapper() = RocketLaunchDTOMapper
+
+    @Provides
+    fun provideContextProvider(@ApplicationContext appContext: Context) = ContextProvider(appContext)
 }

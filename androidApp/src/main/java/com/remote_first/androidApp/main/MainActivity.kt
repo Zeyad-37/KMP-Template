@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
     private fun ActivityMainBinding.bindState(state: MainState) {
         vpTabs.setCurrentItem(state.index, false)
         bnvTabs.menu.findItem(state.tabId).isChecked = true
+        title = state.title
     }
 
     private fun MainEffect.bindEffect() = Unit
