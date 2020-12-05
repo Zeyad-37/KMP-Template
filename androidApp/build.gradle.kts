@@ -5,6 +5,7 @@ plugins {
     kotlin("kapt")
     id("de.mannodermaus.android-junit5")
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
 }
 
 repositories {
@@ -50,6 +51,9 @@ android {
 
 dependencies {
     implementation(project(":shared"))
+
+    implementation(platform("com.google.firebase:firebase-bom:26.1.1"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
 
     val kotlinVersion = "1.4.10"
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")

@@ -15,6 +15,7 @@ buildscript {
         classpath("com.squareup.sqldelight:gradle-plugin:$sqlDelightVersion")
         classpath("de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0")
         classpath("com.google.dagger:hilt-android-gradle-plugin:$hiltVersion")
+        classpath("com.google.gms:google-services:4.3.4")
     }
 }
 

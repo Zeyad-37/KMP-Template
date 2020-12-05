@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "170181003884",
+    "project_id": "remotefirst-85d34",
+    "storage_bucket": "remotefirst-85d34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170181003884:android:e1dbf7e73b87e4545ce649",
+        "android_client_info": {
+          "package_name": "com.remote_first.androidApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170181003884-1f5uj73ch3l1913fv79msge85fqcss4p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl2DqFHD7ecW_5eOdpmFYsETu94A08qfs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170181003884-1f5uj73ch3l1913fv79msge85fqcss4p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
