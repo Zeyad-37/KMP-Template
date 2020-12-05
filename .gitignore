@@ -18,3 +18,5 @@ local.properties
 /shared/build/
 /build/
 /androidApp/build/
+/browser/build/
+/.idea/

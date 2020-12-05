@@ -31,6 +31,9 @@ kotlin {
             }
         }
     }
+    js("js") {
+        browser()
+    }
     sourceSets {
 
         val ktorVersion = "1.4.0"
@@ -98,6 +101,15 @@ kotlin {
             }
         }
         val iosTest by getting
+        val jsMain by getting {
+            dependencies {
+            }
+        }
+        val jsTest by getting {
+            dependencies {
+                implementation(kotlin("test-js"))
+            }
+        }
 
         all {
             languageSettings.progressiveMode = true
