@@ -1,3 +1,4 @@
+include(":shared_network")
 pluginManagement {
     repositories {
         google()
@@ -11,5 +12,6 @@ rootProject.name = "Remote1st"
 
 include(":androidApp")
 include(":shared")
+include(":shared_network")
 include(":server")
 include(":browser")

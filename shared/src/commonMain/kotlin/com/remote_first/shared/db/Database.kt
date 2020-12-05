@@ -1,8 +1,8 @@
 package com.remote_first.shared.db
 
-import com.remote_first.shared.space_x.data_transfer_objects.LinksDTO
-import com.remote_first.shared.space_x.data_transfer_objects.RocketDTO
-import com.remote_first.shared.space_x.data_transfer_objects.RocketLaunchDTO
+import com.remote_first.shared_network.LinksDTO
+import com.remote_first.shared_network.RocketDTO
+import com.remote_first.shared_network.RocketLaunchDTO
 import comremotefirstsharedcache.AppDatabaseQueries
 import javax.inject.Inject
 

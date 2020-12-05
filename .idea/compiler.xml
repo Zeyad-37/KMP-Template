@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="Remote1st.shared_network.commonMain" target="1.8" />
+      <module name="Remote1st.shared_network.commonTest" target="1.8" />
+      <module name="Remote1st.shared_network.jvmMain" target="1.8" />
+      <module name="Remote1st.shared_network.jvmTest" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

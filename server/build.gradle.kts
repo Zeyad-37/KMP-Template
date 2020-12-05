@@ -13,7 +13,7 @@ application {
 }
 
 dependencies {
-
+    implementation(project(":shared_network"))
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-serialization:$ktorVersion")
 

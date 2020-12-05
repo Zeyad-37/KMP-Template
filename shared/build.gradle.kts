@@ -42,6 +42,7 @@ kotlin {
 
         val commonMain by getting {
             dependencies {
+                implementation(project(":shared_network"))
                 val reaktiveVersion = "1.1.17"
                 implementation("com.badoo.reaktive:reaktive:$reaktiveVersion")
                 implementation("com.badoo.reaktive:reaktive-annotations:$reaktiveVersion")
@@ -88,7 +89,7 @@ kotlin {
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13")
+                implementation("junit:junit:4.13.1")
             }
         }
         val iosMain by getting {

@@ -18,7 +18,7 @@ class SpaceXRepo @Inject constructor(private val database: Database, private val
                     database.clearDatabase()
                     database.createLaunches(it)
                 }
-            }.map { it.map() })
+            }.map { RocketLaunchDTOMapper.map(it) })
         }
     }
 }

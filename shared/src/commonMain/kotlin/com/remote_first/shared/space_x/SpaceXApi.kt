@@ -1,6 +1,6 @@
 package com.remote_first.shared.space_x
 
-import com.remote_first.shared.space_x.data_transfer_objects.RocketLaunchDTO
+import com.remote_first.shared_network.RocketLaunchDTO
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import javax.inject.Inject
