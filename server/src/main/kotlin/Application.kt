@@ -1,0 +1,37 @@
+package com.example.multiplatform.server
+
+import io.ktor.application.Application
+import io.ktor.application.call
+import io.ktor.application.install
+import io.ktor.features.CORS
+import io.ktor.features.ContentNegotiation
+import io.ktor.response.respond
+import io.ktor.routing.get
+import io.ktor.routing.routing
+import io.ktor.serialization.json
+import kotlinx.serialization.Serializable
+
+fun main(args: Array<String>) = io.ktor.server.netty.EngineMain.main(args)
+
+@Suppress("unused", "UNUSED_PARAMETER") // Referenced in application.conf
+@kotlin.jvm.JvmOverloads
+fun Application.module(testing: Boolean = false) {
+    install(ContentNegotiation) {
+        json()
+    }
+    install(CORS) {
+        anyHost()
+    }
+
+    routing {
+        get("/message") {
+            call.respond(message)
+        }
+    }
+}
+
+@Suppress("UNRESOLVED_REFERENCE") // IDE has trouble seeing import from Shared from jvm-only module
+private val message = Message("hello")
+
+@Serializable
+data class Message(val value: String)

@@ -9,7 +9,6 @@ pluginManagement {
 }
 rootProject.name = "Remote1st"
 
-
 include(":androidApp")
 include(":shared")
-
+include(":server")
