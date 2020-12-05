@@ -1,8 +1,11 @@
 package com.remote_first.androidApp.splash
 
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.lifecycle.lifecycleScope
 import com.remote_first.androidApp.databinding.ActivitySplashBinding
 import com.remote_first.androidApp.main.MainActivity
@@ -17,6 +20,10 @@ import kotlinx.coroutines.flow.collect
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
+
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST = 1010
+    }
 
     private val splashVM: SplashVM by viewModels()
     private lateinit var binding: ActivitySplashBinding
@@ -33,18 +40,25 @@ class SplashActivity : AppCompatActivity() {
                     is Error -> bindError(it.message)
                 }
             }
-            splashVM.processInitialize()
         }
     }
 
     private fun setupUI() {
-        binding = ActivitySplashBinding.inflate(layoutInflater).apply {
-            setContentView(root)
-        }
+        binding = ActivitySplashBinding.inflate(layoutInflater).apply { setContentView(root) }
     }
 
-    private fun ActivitySplashBinding.bindState(state: SplashState) {
-        splashVM.processInitialize()
+    private fun ActivitySplashBinding.bindState(state: SplashState) = when (state) {
+        is InitialState -> splashVM.processInitialize()
+        is RequestPermissions -> onRequestPermissions()
+    }
+
+    private fun onRequestPermissions() =
+            requestPermissions(this, arrayOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION), LOCATION_PERMISSION_REQUEST)
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (requestCode == LOCATION_PERMISSION_REQUEST) {
+            splashVM.processInitialize()
+        }
     }
 
     private fun SplashEffect.bindEffect() = when (this) {

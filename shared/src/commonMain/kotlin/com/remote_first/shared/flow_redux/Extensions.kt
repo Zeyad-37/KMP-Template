@@ -34,3 +34,7 @@ fun <T> T.inFlow(): Flow<T> = flow { emit(this@inFlow) }
 @ExperimentalCoroutinesApi
 fun <T, R : Result> Flow<T>.mapAndCatch(errorMessage: String? = null, result: (T) -> R): Flow<RxOutcome> =
         map { result.invoke(it).toResultOutcome() }.catch { emit(it.toErrorOutcome(errorMessage)) }
+
+@Throws(IllegalStateException::class)
+inline fun <reified S : State, reified R : Result> S.throwIllegalStateException(result: R): Nothing =
+        throw IllegalStateException("Can not reduce from ${S::class.simpleName} with $result")

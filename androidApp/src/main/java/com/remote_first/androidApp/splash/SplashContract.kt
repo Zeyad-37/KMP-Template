@@ -15,7 +15,12 @@ sealed class SplashState : State
 @Parcelize
 object InitialState : SplashState()
 
+@Parcelize
+object RequestPermissions : SplashState()
+
 sealed class SplashResult : Result
+
+object RequestPermissionsResult : SplashResult()
 
 sealed class SplashEffect : Effect
 
