@@ -1,7 +1,7 @@
 buildscript {
-    val kotlinVersion = "1.4.10"
-    val sqlDelightVersion = "1.4.3"
-    val hiltVersion = "2.28-alpha"
+    val kotlinVersion by extra("1.4.10")
+    val sqlDelightVersion by extra("1.4.3")
+    val hiltVersion by extra("2.28-alpha")
     repositories {
         gradlePluginPortal()
         jcenter()

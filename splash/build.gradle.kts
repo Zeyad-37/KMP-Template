@@ -1,5 +1,3 @@
-import org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency
-
 plugins {
     id("com.android.library")
     kotlin("android")
@@ -50,6 +48,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
+    implementation(project(":design"))
     val kotlinVersion = "1.4.10"
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
