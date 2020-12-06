@@ -5,14 +5,8 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
     }
-
 }
+
 rootProject.name = "Remote1st"
 
-include(":androidApp")
-include(":splash")
-include(":shared")
-include(":design")
-include(":shared_network")
-include(":server")
-include(":browser")
+include(":androidApp", ":splash", ":shared", ":design", ":shared_network", ":server", ":browser")
