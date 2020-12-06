@@ -52,6 +52,7 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation(project(":splash"))
+    implementation(project(":design"))
 
     implementation(platform("com.google.firebase:firebase-bom:26.1.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
@@ -83,7 +84,6 @@ dependencies {
     val hiltXVersion = "1.0.0-alpha02"
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:$hiltXVersion")
     kapt("androidx.hilt:hilt-compiler:$hiltXVersion")
-
 
     val reaktiveVersion = "1.1.17"
     implementation("com.badoo.reaktive:reaktive:$reaktiveVersion")
