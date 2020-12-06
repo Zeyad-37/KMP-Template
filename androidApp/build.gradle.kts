@@ -6,6 +6,7 @@ plugins {
     id("de.mannodermaus.android-junit5")
     id("dagger.hilt.android.plugin")
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 repositories {
@@ -56,6 +57,7 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:26.1.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-crashlytics-ktx")
 
     val kotlinVersion = "1.4.10"
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
@@ -92,6 +94,7 @@ dependencies {
 
     implementation("io.github.reactivecircus.flowbinding:flowbinding-material:1.0.0-beta02")
 
+    implementation("com.github.aakira:napier:$1.4.1")
 //    val flaggerVersion = "1.0.9"
 //    implementation("com.glovoapp.featureflagger:library:$flaggerVersion")
 //    kapt("com.glovoapp.featureflagger:compiler:$flaggerVersion")
