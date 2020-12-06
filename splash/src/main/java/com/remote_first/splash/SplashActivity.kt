@@ -1,14 +1,14 @@
-package com.remote_first.androidApp.splash
+package com.remote_first.splash
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.lifecycle.lifecycleScope
 import com.remote_first.androidApp.databinding.ActivitySplashBinding
-import com.remote_first.androidApp.main.MainActivity
 import com.remote_first.shared.flow_redux.Error
 import com.remote_first.shared.flow_redux.Progress
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,7 +63,8 @@ class SplashActivity : AppCompatActivity() {
 
     private fun SplashEffect.bindEffect() = when (this) {
         is ToMain -> {
-            startActivity(MainActivity.makeIntent(this@SplashActivity))
+            startActivity(Intent()
+                    .setClassName(this@SplashActivity, "com.remote_first.androidApp.main.MainActivity"))
             finish()
         }
     }

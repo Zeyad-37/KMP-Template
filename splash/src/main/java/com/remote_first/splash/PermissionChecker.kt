@@ -1,4 +1,4 @@
-package com.remote_first.androidApp.splash
+package com.remote_first.splash
 
 import android.content.Context
 import android.content.pm.PackageManager.PERMISSION_GRANTED

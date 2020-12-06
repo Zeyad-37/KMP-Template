@@ -1,4 +1,4 @@
-package com.remote_first.androidApp.splash
+package com.remote_first.splash
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION

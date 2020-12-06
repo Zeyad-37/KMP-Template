@@ -1,4 +1,4 @@
-package com.remote_first.androidApp.splash
+package com.remote_first.splash
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
