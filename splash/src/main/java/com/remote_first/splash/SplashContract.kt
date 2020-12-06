@@ -1,4 +1,4 @@
-package com.remote_first.androidApp.splash
+package com.remote_first.splash
 
 import com.remote_first.shared.flow_redux.Effect
 import com.remote_first.shared.flow_redux.Input

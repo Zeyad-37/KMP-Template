@@ -1,4 +1,3 @@
-include(":shared_network")
 pluginManagement {
     repositories {
         google()
@@ -6,11 +5,12 @@ pluginManagement {
         gradlePluginPortal()
         mavenCentral()
     }
-    
+
 }
 rootProject.name = "Remote1st"
 
 include(":androidApp")
+include(":splash")
 include(":shared")
 include(":shared_network")
 include(":server")
