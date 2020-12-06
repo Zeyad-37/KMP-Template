@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
@@ -75,7 +76,7 @@ interface IFlowViewModel<I : Input, R : Result, S : State, E : Effect> {
      * Input source provider. By default it returns empty
      * It can be overwritten to provide other inputs into the stream
      */
-    fun inputSource(): MutableSharedFlow<I> = MutableSharedFlow()
+    fun inputSource(): Flow<I> = flow {}
 
     fun process(input: I, inputStrategy: InputStrategy = NONE)
 

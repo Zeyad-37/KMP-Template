@@ -5,15 +5,18 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import com.remote_first.androidApp.R
 import com.remote_first.androidApp.utils.ContextProvider
+import com.remote_first.shared.event_bus.EventBusService
 import com.remote_first.shared.flow_redux.FlowViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 @FlowPreview
 @ExperimentalCoroutinesApi
 class MainVM @ViewModelInject constructor(
         mainInputHandler: MainInputHandler, reducer: MainReducer, @Assisted savedStateHandle: SavedStateHandle?,
-        private val contextProvider: ContextProvider,
+        private val contextProvider: ContextProvider, private val eventBusService: EventBusService,
 ) : FlowViewModel<MainInput, MainResult, MainState, MainEffect>(
         mainInputHandler, reducer, savedStateHandle
 ) {
@@ -31,4 +34,7 @@ class MainVM @ViewModelInject constructor(
 
     override fun provideDefaultInitialState() = MainState(SPACE_X_TAB_INDEX,
             R.id.action_space_x, contextProvider.context.getString(R.string.space_x_tab_title))
+
+    override fun inputSource(): Flow<MainInput> =
+            eventBusService.observe().map { TabClicked(R.id.action_profile) }
 }
