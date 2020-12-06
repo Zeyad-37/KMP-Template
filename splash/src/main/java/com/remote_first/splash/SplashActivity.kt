@@ -2,19 +2,20 @@ package com.remote_first.splash
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.lifecycle.lifecycleScope
 import com.remote_first.androidApp.databinding.ActivitySplashBinding
+import com.remote_first.navigation.IMainActivityNavigator
 import com.remote_first.shared.flow_redux.Error
 import com.remote_first.shared.flow_redux.Progress
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 @FlowPreview
 @ExperimentalCoroutinesApi
@@ -24,6 +25,9 @@ class SplashActivity : AppCompatActivity() {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST = 1010
     }
+
+    @Inject
+    lateinit var mainActivityNavigator: IMainActivityNavigator
 
     private val splashVM: SplashVM by viewModels()
     private lateinit var binding: ActivitySplashBinding
@@ -63,8 +67,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun SplashEffect.bindEffect() = when (this) {
         is ToMain -> {
-            startActivity(Intent()
-                    .setClassName(this@SplashActivity, "com.remote_first.androidApp.main.MainActivity"))
+            mainActivityNavigator.navigate(this@SplashActivity)
             finish()
         }
     }

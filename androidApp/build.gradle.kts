@@ -50,9 +50,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared"))
     implementation(project(":splash"))
+    implementation(project(":shared"))
     implementation(project(":design"))
+    implementation(project(":navigation"))
 
     implementation(platform("com.google.firebase:firebase-bom:26.1.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
