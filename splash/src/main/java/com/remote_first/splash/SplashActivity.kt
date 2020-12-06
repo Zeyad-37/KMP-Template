@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.lifecycle.lifecycleScope
 import com.remote_first.androidApp.databinding.ActivitySplashBinding
-import com.remote_first.navigation.IMainActivityNavigator
+import com.remote_first.navigation.IMainActivityIntentFactory
 import com.remote_first.shared.flow_redux.Error
 import com.remote_first.shared.flow_redux.Progress
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     @Inject
-    lateinit var mainActivityNavigator: IMainActivityNavigator
+    lateinit var mainActivityIntentFactory: IMainActivityIntentFactory
 
     private val splashVM: SplashVM by viewModels()
     private lateinit var binding: ActivitySplashBinding
@@ -67,7 +67,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun SplashEffect.bindEffect() = when (this) {
         is ToMain -> {
-            mainActivityNavigator.navigate(this@SplashActivity)
+            mainActivityIntentFactory.create(this@SplashActivity)
             finish()
         }
     }
