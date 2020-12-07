@@ -1,7 +1,9 @@
 package com.remote_first.androidApp.di
 
 import android.content.Context
+import com.remote_first.androidApp.main.MainActivityIntentFactory
 import com.remote_first.androidApp.utils.ContextProvider
+import com.remote_first.navigation.IMainActivityIntentFactory
 import com.remote_first.shared.cache.AppDatabase
 import com.remote_first.shared.db.Database
 import com.remote_first.shared.db.DatabaseDriverFactory
@@ -52,4 +54,7 @@ object AppModule {
 
     @Provides
     fun provideContextProvider(@ApplicationContext appContext: Context) = ContextProvider(appContext)
+
+    @Provides
+    fun provideMainActivityContract(): IMainActivityIntentFactory = MainActivityIntentFactory()
 }
