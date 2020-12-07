@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("kotlin-android-extensions")
+    id("kotlin-parcelize")
     kotlin("kapt")
     id("de.mannodermaus.android-junit5")
     id("dagger.hilt.android.plugin")
@@ -59,7 +59,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
 
-    val kotlinVersion = "1.4.10"
+    val kotlinVersion = "1.4.20"
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
 
