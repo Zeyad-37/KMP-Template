@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("android")
-    id("kotlin-android-extensions")
+    id("kotlin-parcelize")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
 }
@@ -50,7 +50,8 @@ dependencies {
     implementation(project(":shared"))
     implementation(project(":design"))
     implementation(project(":navigation"))
-    val kotlinVersion = "1.4.10"
+
+    val kotlinVersion = "1.4.20"
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
 
