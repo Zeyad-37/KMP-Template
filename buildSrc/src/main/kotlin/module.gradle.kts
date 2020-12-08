@@ -3,6 +3,7 @@ import Dependencies.Hilt
 import Dependencies.Testing.JUnit5
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
 
 plugins {
     id("com.android.library")
@@ -56,6 +57,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        isAbortOnError = false
+        error("VisibleForTests")
+        error("CheckResult")
     }
     buildFeatures.viewBinding = true
 }
