@@ -13,10 +13,10 @@ repositories {
 
 android {
     sourceSets["main"].manifest.srcFile("src/main/AndroidManifest.xml")
-    compileSdkVersion(30)
+    compileSdkVersion(Android.compileSdk)
     defaultConfig {
-        minSdkVersion(24)
-        targetSdkVersion(30)
+        minSdkVersion(Android.minSdk)
+        targetSdkVersion(Android.targetSdk)
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
@@ -45,6 +45,6 @@ android {
 }
 
 dependencies {
-    implementation("com.google.android.material:material:1.2.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation(Dependencies.AndroidX.constraintLayout)
+    implementation(Dependencies.AndroidX.material)
 }

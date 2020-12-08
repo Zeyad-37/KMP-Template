@@ -1,5 +1,6 @@
 import Versions.coroutinesVersion
 import Versions.hiltVersion
+import Versions.hiltXVersion
 import Versions.kotlinVersion
 import Versions.ktorVersion
 import Versions.lifeCycleVersion
@@ -31,16 +32,18 @@ object Versions {
     const val serializationVersion = "1.0.1"
 
     const val lifeCycleVersion = "2.2.0"
+
+    const val hiltXVersion = "1.0.0-alpha02"
+}
+
+object Android {
+    const val minSdk = 24
+    const val compileSdk = 30
+    const val targetSdk = compileSdk
+    const val buildTools = "30.0.1"
 }
 
 object Dependencies {
-
-    object Android {
-        const val minSdk = 24
-        const val compileSdk = 30
-        const val targetSdk = compileSdk
-        const val buildTools = "30.0.1"
-    }
 
     object Reaktive {
         const val reaktive = "com.badoo.reaktive:reaktive:$reaktiveVersion"
@@ -50,7 +53,8 @@ object Dependencies {
 
     object Kotlin {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+        const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
         const val coroutinesJS = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion"
         const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion"
     }
@@ -85,7 +89,7 @@ object Dependencies {
     object AndroidX {
         const val viewModelKTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
         const val viewModelSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifeCycleVersion"
-        const val lifeCycle = "androidx.lifecycle:lifecycle-runtime-ktx:$lifeCycleVersion"
+        const val lifeCycleKTX = "androidx.lifecycle:lifecycle-runtime-ktx:$lifeCycleVersion"
         const val appcompat = "androidx.appcompat:appcompat:1.2.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val coreKTX = "androidx.core:core-ktx:1.3.2"
@@ -97,6 +101,8 @@ object Dependencies {
         const val multidex = "androidx.multidex:multidex:2.0.1"
         const val material = "com.google.android.material:material:1.2.1"
         const val annotation = "androidx.annotation:annotation:$1.1.0"
+        const val hiltLifecycleViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$hiltXVersion"
+        const val hiltCompiler = "androidx.hilt:hilt-compiler:$hiltXVersion"
 
 //        const val browser = "androidx.browser:browser:${androidxBrowser}"
 //        const val collectionKtx = "androidx.collection:collection-ktx:$androidxCollectionVersion"
@@ -129,7 +135,7 @@ object Dependencies {
     object Testing {
 
         object JUnit5 {
-            val junit5 = "org.junit.jupiter:junit-jupiter-api:${Versions.junit5Version}"
+            val api = "org.junit.jupiter:junit-jupiter-api:${Versions.junit5Version}"
             val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit5Version}"
             val vintageEngine = "org.junit.vintage:junit-vintage-engine:${Versions.junit5Version}"
             val migrationSupport = "org.junit.jupiter:junit-jupiter-migrationsupport:${Versions.junit5Version}"

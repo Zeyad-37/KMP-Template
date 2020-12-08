@@ -2,22 +2,26 @@ plugins {
     module
 }
 
+android {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
 dependencies {
     implementation(project(":shared"))
     implementation(project(":design"))
     implementation(project(":navigation"))
 
-    val kotlinVersion = "1.4.20"
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
+    implementation(Dependencies.Kotlin.stdlib)
+    implementation(Dependencies.Kotlin.coroutinesAndroid)
 
-    implementation("com.google.android.material:material:1.2.1")
-    val lifeCycleVersion = "2.2.0"
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifeCycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifeCycleVersion")
-    implementation("androidx.fragment:fragment-ktx:1.2.5")
-    implementation("androidx.activity:activity-ktx:1.1.0")
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation(Dependencies.AndroidX.material)
+    implementation(Dependencies.AndroidX.lifeCycleKTX)
+    implementation(Dependencies.AndroidX.viewModelKTX)
+    implementation(Dependencies.AndroidX.viewModelSavedState)
+    implementation(Dependencies.AndroidX.fragmentKtx)
+    implementation(Dependencies.AndroidX.activityKtx)
+    implementation(Dependencies.AndroidX.coreKTX)
+    implementation(Dependencies.AndroidX.constraintLayout)
 }
