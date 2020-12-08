@@ -1,6 +1,8 @@
 import Dependencies.AndroidX
 import Dependencies.Hilt
 import Dependencies.Testing.JUnit5
+import io.gitlab.arturbosch.detekt.DetektPlugin
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 
 plugins {
     id("com.android.library")
@@ -8,6 +10,19 @@ plugins {
     id("kotlin-parcelize")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
+}
+
+apply<DetektPlugin>()
+
+configure<DetektExtension> {
+    ignoreFailures = true
+    file("$rootDir/config/detekt/detekt.yml").takeIf { it.isFile }?.let { config.from(it) }
+    file("$rootDir/config/detekt/baseline.xml").takeIf { it.isFile }?.let { baseline = it }
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        txt.enabled = false
+    }
 }
 
 repositories {
