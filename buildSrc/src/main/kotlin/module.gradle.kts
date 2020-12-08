@@ -3,7 +3,6 @@ import Dependencies.Hilt
 import Dependencies.Testing.JUnit5
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
-import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
 
 plugins {
     id("com.android.library")
@@ -13,8 +12,9 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
-apply<DetektPlugin>()
+apply<CoveragePlugin>()
 
+apply<DetektPlugin>()
 configure<DetektExtension> {
     ignoreFailures = true
     file("$rootDir/config/detekt/detekt.yml").takeIf { it.isFile }?.let { config.from(it) }

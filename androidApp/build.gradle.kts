@@ -1,3 +1,7 @@
+import Dependencies.AndroidX
+import Dependencies.Hilt
+import Dependencies.Testing.JUnit5
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -9,6 +13,8 @@ plugins {
     id("com.google.firebase.crashlytics")
 }
 
+apply<ReleaseNotesPlugin>()
+
 repositories {
     gradlePluginPortal()
     google()
@@ -18,11 +24,11 @@ repositories {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdkVersion(Android.compileSdk)
     defaultConfig {
         applicationId = "com.remote_first.androidApp"
-        minSdkVersion(24)
-        targetSdkVersion(30)
+        minSdkVersion(Android.minSdk)
+        targetSdkVersion(Android.targetSdk)
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
@@ -60,33 +66,28 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
 
-    val kotlinVersion = "1.4.20"
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
+    implementation(Dependencies.Kotlin.stdlib)
+    implementation(Dependencies.Kotlin.coroutinesAndroid)
 
-    implementation("com.google.android.material:material:1.2.1")
-
-    val lifeCycleVersion = "2.2.0"
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifeCycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifeCycleVersion")
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    implementation("androidx.recyclerview:recyclerview:1.1.0")
-    implementation("androidx.cardview:cardview:1.0.0")
-    implementation("androidx.annotation:annotation:1.1.0")
-    implementation("androidx.fragment:fragment-ktx:1.2.5")
-    implementation("androidx.activity:activity-ktx:1.1.0")
+    implementation(AndroidX.material)
+    implementation(AndroidX.appcompat)
+    implementation(AndroidX.constraintLayout)
+    implementation(AndroidX.lifeCycleKTX)
+    implementation(AndroidX.viewModelKTX)
+    implementation(AndroidX.viewModelSavedState)
+    implementation(AndroidX.coreKTX)
+    implementation(AndroidX.swipeRefreshLayout)
+    implementation(AndroidX.recyclerView)
+    implementation(AndroidX.cardView)
+    implementation(AndroidX.annotation)
+    implementation(AndroidX.fragmentKtx)
+    implementation(AndroidX.activityKtx)
     implementation("androidx.room:room-runtime:2.2.5")
 
-    val hiltVersion = "2.28-alpha"
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
-    val hiltXVersion = "1.0.0-alpha02"
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:$hiltXVersion")
-    kapt("androidx.hilt:hilt-compiler:$hiltXVersion")
+    implementation(Hilt.hilt)
+    kapt(Hilt.hiltCompiler)
+    implementation(AndroidX.hiltLifecycleViewModel)
+    kapt(AndroidX.hiltCompiler)
 
     val reaktiveVersion = "1.1.17"
     implementation("com.badoo.reaktive:reaktive:$reaktiveVersion")
@@ -102,12 +103,11 @@ dependencies {
 
     implementation("io.coil-kt:coil:1.0.0-rc3")
 
-    val junit5Version = "5.6.2"
-    androidTestRuntimeOnly("de.mannodermaus.junit5:android-test-runner:1.2.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junit5Version")
-    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:$junit5Version")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$junit5Version")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:$junit5Version")
+    androidTestRuntimeOnly(JUnit5.androidTestRunner)
+    testRuntimeOnly(JUnit5.jupiterEngine)
+    testRuntimeOnly(JUnit5.vintageEngine)
+    testImplementation(JUnit5.api)
+    testImplementation(JUnit5.params)
 }
 
 kapt {
