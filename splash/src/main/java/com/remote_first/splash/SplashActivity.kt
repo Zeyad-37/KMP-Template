@@ -67,7 +67,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun SplashEffect.bindEffect() = when (this) {
         is ToMain -> {
-            mainActivityIntentFactory.create(this@SplashActivity)
+            startActivity(mainActivityIntentFactory.create(this@SplashActivity))
             finish()
         }
     }

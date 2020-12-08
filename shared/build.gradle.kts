@@ -1,3 +1,4 @@
+import Dependencies.AndroidX
 import org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
@@ -76,8 +77,8 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0")
-                implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+                implementation(AndroidX.viewModelKTX)
+                implementation(AndroidX.viewModelSavedState)
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
                 implementation("com.google.dagger:hilt-android:$hiltVersion")
