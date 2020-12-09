@@ -7,16 +7,15 @@ import com.remote_first.shared.flow_redux.State
 import kotlinx.android.parcel.Parcelize
 
 sealed class MainInput(showProgress: Boolean) : Input(showProgress)
-data class TabClicked(val tabId: Int): MainInput(false)
+data class TabClicked(val tabIndex: Int): MainInput(false)
 
 @Parcelize
 data class MainState(
         val index: Int,
-        val tabId: Int,
         val title: String
 ) : State
 
 sealed class MainResult : Result
-data class TabClickResult(val index: Int, val tabId: Int, val title: String) : MainResult()
+data class TabClickResult(val index: Int, val title: String) : MainResult()
 
 sealed class MainEffect : Effect

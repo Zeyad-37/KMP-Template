@@ -33,7 +33,7 @@ class MainVM @ViewModelInject constructor(
     fun processTabClicked(tabId: Int) = process(TabClicked(tabId))
 
     override fun provideDefaultInitialState() = MainState(SPACE_X_TAB_INDEX,
-            R.id.action_space_x, contextProvider.context.getString(R.string.space_x_tab_title))
+            contextProvider.context.getString(R.string.space_x_tab_title))
 
     override fun inputSource(): Flow<MainInput> =
             eventBusService.observe().map { TabClicked(R.id.action_profile) }
