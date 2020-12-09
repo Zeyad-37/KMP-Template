@@ -25,6 +25,5 @@ allprojects {
         google()
         jcenter()
         maven(url = "https://dl.bintray.com/badoo/maven")
-        maven(url = "https://dl.bintray.com/icerockdev/moko" )
     }
 }
