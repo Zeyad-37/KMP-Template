@@ -11,6 +11,12 @@ import com.remote_first.androidApp.databinding.ActivitySplashBinding
 import com.remote_first.navigation.IMainActivityIntentFactory
 import com.remote_first.shared.flow_redux.Error
 import com.remote_first.shared.flow_redux.Progress
+import com.remote_first.shared.splash.InitialState
+import com.remote_first.shared.splash.RequestPermissions
+import com.remote_first.shared.splash.SplashEffect
+import com.remote_first.shared.splash.SplashState
+import com.remote_first.shared.splash.SplashVM
+import com.remote_first.shared.splash.ToMain
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview

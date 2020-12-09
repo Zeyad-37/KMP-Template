@@ -1,12 +1,11 @@
-package com.remote_first.splash
+package com.remote_first.shared.splash
 
 import com.remote_first.shared.flow_redux.Reducer
 import com.remote_first.shared.flow_redux.throwIllegalStateException
-import javax.inject.Inject
 
-class SplashReducer @Inject constructor() : Reducer<SplashState, SplashResult> {
+class SplashReducer : Reducer<SplashState, SplashResult> {
     override fun reduce(state: SplashState, result: SplashResult): SplashState {
-        return when(state) {
+        return when (state) {
             is InitialState -> when (result) {
                 is RequestPermissionsResult -> RequestPermissions
             }
