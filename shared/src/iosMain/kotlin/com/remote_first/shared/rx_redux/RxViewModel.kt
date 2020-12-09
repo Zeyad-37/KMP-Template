@@ -14,7 +14,7 @@ import com.remote_first.shared.flow_redux.State
 import com.remote_first.shared.flow_redux.TrackingListener
 import kotlin.properties.Delegates.observable
 
-actual open class RxViewModel<I : Input, R : Result, S : State, E : Effect>(
+actual abstract class RxViewModel<I : Input, R : Result, S : State, E : Effect>(
         override val reducer: Reducer<S, R>,
         override val inputHandler: InputHandler<I, S>,
 ) : IRxViewModel<I, R, S, E> {

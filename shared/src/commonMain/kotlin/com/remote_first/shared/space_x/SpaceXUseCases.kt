@@ -6,20 +6,17 @@ import com.remote_first.shared.space_x.domain_objects.SpaceEffect
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
 @FlowPreview
 @ExperimentalCoroutinesApi
-class GetLaunchesUseCase @Inject constructor(private val spaceXRepo: SpaceXRepo) {
+class GetLaunchesUseCase(private val spaceXRepo: SpaceXRepo) {
     fun execute(): Flow<List<RocketLaunch>> = spaceXRepo.getLaunches()
 }
 
-@FlowPreview
-@ExperimentalCoroutinesApi
-class SpaceEffectUseCase @Inject constructor() {
+class SpaceEffectUseCase {
     fun execute() = SpaceEffect
 }
 
-class EmptyUseCase @Inject constructor() {
+class EmptyUseCase {
     fun execute() = EmptyOutcome
 }

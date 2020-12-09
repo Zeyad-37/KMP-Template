@@ -4,9 +4,8 @@ import com.remote_first.shared_network.LinksDTO
 import com.remote_first.shared_network.RocketDTO
 import com.remote_first.shared_network.RocketLaunchDTO
 import comremotefirstsharedcache.AppDatabaseQueries
-import javax.inject.Inject
 
-class Database @Inject constructor(val dbQuery: AppDatabaseQueries) {
+class Database(val dbQuery: AppDatabaseQueries) {
 
     internal fun clearDatabase() {
         dbQuery.transaction {

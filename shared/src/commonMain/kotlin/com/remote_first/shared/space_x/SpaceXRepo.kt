@@ -4,9 +4,8 @@ import com.remote_first.shared.db.Database
 import com.remote_first.shared.space_x.domain_objects.RocketLaunch
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
 
-class SpaceXRepo @Inject constructor(
+class SpaceXRepo(
         private val database: Database,
         private val api: SpaceXApi,
         private val rocketLaunchDTOMapper: RocketLaunchDTOMapper,
