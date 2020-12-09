@@ -1,4 +1,5 @@
 import Libs.AndroidX
+import Versions.hiltXVersion
 import org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency
 import org.jetbrains.kotlin.gradle.plugin.mpp.Framework.BitcodeEmbeddingMode.BITCODE
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
@@ -82,6 +83,10 @@ kotlin {
                 implementation(Libs.Hilt.hilt)
                 configurations["kapt"].dependencies.add(DefaultExternalModuleDependency(
                         "com.google.dagger", "hilt-android-compiler", hiltVersion)
+                )
+                implementation(AndroidX.hiltLifecycleViewModel)
+                configurations["kapt"].dependencies.add(DefaultExternalModuleDependency(
+                        "androidx.hilt", "hilt-compiler", hiltXVersion)
                 )
             }
         }

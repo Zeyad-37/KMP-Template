@@ -1,15 +1,24 @@
 package com.remote_first.shared.flow_redux
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlin.native.internal.GC
 import kotlin.properties.Delegates.observable
 
+@ThreadLocal
+private var isGCWorking = false
+
+@FlowPreview
+@ExperimentalCoroutinesApi
 actual abstract class FlowViewModel<I : Input, R : Result, S : State, E : Effect>(
-        override val reducer: Reducer<S, R>,
         override val inputHandler: InputHandler<I, S>,
+        override val reducer: Reducer<S, R>,
 ) : IFlowViewModel<I, R, S, E> {
 
     override lateinit var currentState: S
@@ -52,4 +61,13 @@ actual abstract class FlowViewModel<I : Input, R : Result, S : State, E : Effect
     }
 
     override fun saveState(state: S) = /*savedStateHandle?.set(ARG_STATE, state) ?:*/ Unit
+
+    open fun onClear() {
+        if (!isGCWorking) {
+            isGCWorking = true
+            GC.collect()
+            isGCWorking = false
+        }
+        scope.cancel()
+    }
 }
