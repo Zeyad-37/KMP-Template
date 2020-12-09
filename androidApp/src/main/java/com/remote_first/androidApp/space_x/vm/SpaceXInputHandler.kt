@@ -1,6 +1,5 @@
 package com.remote_first.androidApp.space_x.vm
 
-import androidx.lifecycle.Transformations.map
 import com.remote_first.androidApp.space_x.DoNothing
 import com.remote_first.androidApp.space_x.GetLaunches
 import com.remote_first.androidApp.space_x.GetLaunchesResult

@@ -61,7 +61,7 @@ kotlin {
 
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
 
-                implementation("com.github.aakira:napier:1.4.1")
+                api("com.github.aakira:napier:1.4.1")
 
                 implementation("com.google.dagger:hilt-android:$hiltVersion")
                 configurations["kapt"].dependencies.add(DefaultExternalModuleDependency(

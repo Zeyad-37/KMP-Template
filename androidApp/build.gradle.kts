@@ -96,7 +96,6 @@ dependencies {
 
     implementation("io.github.reactivecircus.flowbinding:flowbinding-material:1.0.0-beta02")
 
-    implementation("com.github.aakira:napier:$1.4.1")
 //    val flaggerVersion = "1.0.9"
 //    implementation("com.glovoapp.featureflagger:library:$flaggerVersion")
 //    kapt("com.glovoapp.featureflagger:compiler:$flaggerVersion")
