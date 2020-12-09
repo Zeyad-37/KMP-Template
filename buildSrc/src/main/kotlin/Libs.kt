@@ -28,7 +28,7 @@ object Versions {
     const val hiltVersion = "2.28-alpha"
 
     const val reaktiveVersion = "1.1.17"
-    const val coroutinesVersion = "1.4.1"
+    const val coroutinesVersion = "1.4.2"
     const val serializationVersion = "1.0.1"
 
     const val lifeCycleVersion = "2.2.0"
@@ -43,7 +43,7 @@ object Android {
     const val buildTools = "30.0.1"
 }
 
-object Dependencies {
+object Libs {
 
     object Reaktive {
         const val reaktive = "com.badoo.reaktive:reaktive:$reaktiveVersion"
@@ -56,6 +56,8 @@ object Dependencies {
         const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
         const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
         const val coroutinesJS = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$coroutinesVersion"
+        const val coroutinesNative = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:$coroutinesVersion"
+        const val coroutinesNativeMetaData = "org.jetbrains.kotlinx:kotlinx-coroutines-core-metadata:nativeMain:$coroutinesVersion"
         const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion"
     }
 
@@ -71,14 +73,14 @@ object Dependencies {
         const val jsSerialization = "io.ktor:ktor-client-serialization-js:$ktorVersion"
         const val jsLogging = "io.ktor:ktor-client-logging-js:$ktorVersion"
         const val serverNetty = "io.ktor:ktor-server-netty:$ktorVersion"
-        const val serialization = "io.ktor:ktor-serialization:$ktorVersion"
+        const val serverSerialization = "io.ktor:ktor-serialization:$ktorVersion"
         const val serverTests = "io.ktor:ktor-server-tests:$ktorVersion"
     }
 
     object SqlDelight {
-        const val sqlDelight = "com.squareup.sqldelight:runtime:$sqlDelightVersion"
-        const val sqlDelightAndroid = "com.squareup.sqldelight:android-driver:$sqlDelightVersion"
-        const val sqlDelightIOStatus = "com.squareup.sqldelight:native-driver:$sqlDelightVersion"
+        const val runtime = "com.squareup.sqldelight:runtime:$sqlDelightVersion"
+        const val android = "com.squareup.sqldelight:android-driver:$sqlDelightVersion"
+        const val iOS = "com.squareup.sqldelight:native-driver:$sqlDelightVersion"
     }
 
     object Hilt {
@@ -144,12 +146,13 @@ object Dependencies {
         }
     }
 
-    object Libraries {
+    object Other {
 
         const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
         const val instabug = "com.instabug.library:instabug:${Versions.instabug}"
         const val facebookSdk = "com.facebook.android:facebook-android-sdk:${Versions.facebookSdk}"
         const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
+        const val napier = "com.github.aakira:napier:1.4.1"
     }
 
 //    object Payment {

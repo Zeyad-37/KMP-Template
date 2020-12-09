@@ -1,6 +1,6 @@
-import Dependencies.AndroidX
-import Dependencies.Hilt
-import Dependencies.Testing.JUnit5
+import Libs.AndroidX
+import Libs.Hilt
+import Libs.Testing.JUnit5
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 

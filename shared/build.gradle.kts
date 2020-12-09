@@ -1,5 +1,6 @@
-import Dependencies.AndroidX
+import Libs.AndroidX
 import org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency
+import org.jetbrains.kotlin.gradle.plugin.mpp.Framework.BitcodeEmbeddingMode.BITCODE
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
@@ -27,7 +28,7 @@ kotlin {
         binaries {
             framework {
                 baseName = "shared"
-                embedBitcode = org.jetbrains.kotlin.gradle.plugin.mpp.Framework.BitcodeEmbeddingMode.BITCODE
+                embedBitcode = BITCODE
                 transitiveExport = true
             }
         }
@@ -37,33 +38,29 @@ kotlin {
     }
     sourceSets {
 
-        val ktorVersion = "1.4.1"
-        val sqlDelightVersion = "1.4.3"
         val hiltVersion = "2.28-alpha"
 
         val commonMain by getting {
             dependencies {
                 implementation(project(":shared_network"))
-                val reaktiveVersion = "1.1.17"
-                implementation("com.badoo.reaktive:reaktive:$reaktiveVersion")
-                implementation("com.badoo.reaktive:reaktive-annotations:$reaktiveVersion")
-                implementation("com.badoo.reaktive:coroutines-interop:$reaktiveVersion")
 
-                val coroutinesVersion = "1.4.1"
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+                implementation(Libs.Reaktive.reaktive)
+                implementation(Libs.Reaktive.reaktiveAnnotation)
+                implementation(Libs.Reaktive.reaktiveInterop)
 
-                val serializationVersion = "1.0.1"
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
+                implementation(Libs.Kotlin.coroutinesCore)
 
-                api("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-logging:$ktorVersion")
-                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation(Libs.Kotlin.serialization)
 
-                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                api(Libs.Ktor.core)
+                implementation(Libs.Ktor.logging)
+                implementation(Libs.Ktor.clientSerialization)
 
-                api("com.github.aakira:napier:1.4.1")
+                api(Libs.SqlDelight.runtime)
 
-                implementation("com.google.dagger:hilt-android:$hiltVersion")
+                api(Libs.Other.napier)
+
+                implementation(Libs.Hilt.hilt)
                 configurations["kapt"].dependencies.add(DefaultExternalModuleDependency(
                         "com.google.dagger", "hilt-android-compiler", hiltVersion)
                 )
@@ -79,9 +76,10 @@ kotlin {
             dependencies {
                 implementation(AndroidX.viewModelKTX)
                 implementation(AndroidX.viewModelSavedState)
-                implementation("io.ktor:ktor-client-android:$ktorVersion")
-                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
-                implementation("com.google.dagger:hilt-android:$hiltVersion")
+                implementation(Libs.Kotlin.coroutinesAndroid)
+                implementation(Libs.Ktor.android)
+                implementation(Libs.SqlDelight.android)
+                implementation(Libs.Hilt.hilt)
                 configurations["kapt"].dependencies.add(DefaultExternalModuleDependency(
                         "com.google.dagger", "hilt-android-compiler", hiltVersion)
                 )
@@ -95,8 +93,10 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-ios:$ktorVersion")
-                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
+                implementation(Libs.Kotlin.coroutinesNativeMetaData)
+                implementation(Libs.Kotlin.coroutinesNative)
+                implementation(Libs.Ktor.iOS)
+                implementation(Libs.SqlDelight.iOS)
                 configurations["kapt"].dependencies.add(DefaultExternalModuleDependency(
                         "com.google.dagger", "hilt-android-compiler", hiltVersion)
                 )
@@ -105,6 +105,7 @@ kotlin {
         val iosTest by getting
         val jsMain by getting {
             dependencies {
+                implementation(Libs.Kotlin.coroutinesJS)
             }
         }
         val jsTest by getting {
@@ -121,11 +122,11 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdkVersion(Android.compileSdk)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(24)
-        targetSdkVersion(30)
+        minSdkVersion(Android.minSdk)
+        targetSdkVersion(Android.targetSdk)
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

@@ -9,22 +9,14 @@ kotlin {
     jvm()
     val isDevice = System.getenv("SDK_NAME")?.startsWith("iphoneos") == true
     val ios: (String) -> KotlinNativeTarget = if (isDevice) ::iosArm64 else ::iosX64
-    ios("ios") {
-        binaries {
-            framework {
-                baseName = "shared_network"
-            }
-        }
-    }
+    ios("ios")
     js("js") {
         browser()
     }
     sourceSets {
         val commonMain by getting {
             dependencies {
-                val serializationVersion = "1.0.1"
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
-
+                implementation(Libs.Ktor.clientSerialization)
             }
         }
         val commonTest by getting {

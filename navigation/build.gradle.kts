@@ -9,7 +9,7 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.Kotlin.stdlib)
-    implementation(Dependencies.AndroidX.coreKTX)
-    implementation(Dependencies.AndroidX.appcompat)
+    implementation(Libs.Kotlin.stdlib)
+    implementation(Libs.AndroidX.coreKTX)
+    implementation(Libs.AndroidX.appcompat)
 }
