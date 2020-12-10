@@ -23,7 +23,7 @@ object Versions {
     const val mparticle = "5.7.0"
     const val room = "5.7.0"
 
-    const val ktorVersion = "1.4.1"
+    const val ktorVersion = "1.4.3"
     const val sqlDelightVersion = "1.4.3"
     const val hiltVersion = "2.28-alpha"
 
