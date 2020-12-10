@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.lifecycle.lifecycleScope
 import com.remote_first.androidApp.R
 import com.remote_first.androidApp.databinding.ActivityMainBinding
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun ActivityMainBinding.bindState(state: MainState) {
         vpTabs.setCurrentItem(state.index, false)
-        bnvTabs.menu.findItem(state.tabId).isChecked = true
+        bnvTabs.menu[state.index].isChecked = true
         title = state.title
     }
 
