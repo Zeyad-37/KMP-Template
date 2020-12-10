@@ -129,7 +129,7 @@ interface IRxViewModel<I : Input, R : Result, S : State, E : Effect> {
                 .flatMap { processInputOutcomeStream(it) }
         val sequentialOutcomes = streamsToProcess.filter { it.outcomes !is AsyncOutcomeObservable }
                 .concatMap { processInputOutcomeStream(it) }
-        return merge(asyncOutcomes, sequentialOutcomes)
+        return merge(asyncOutcomes, sequentialOutcomes).share()
     }
 
     private fun processInputOutcomeStream(inputOutcomeStream: InputOutcomeStream): Observable<RxOutcome> {
