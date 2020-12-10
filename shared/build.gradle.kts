@@ -98,8 +98,6 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
-                implementation(Libs.Kotlin.coroutinesNativeMetaData)
-                implementation(Libs.Kotlin.coroutinesNative)
                 implementation(Libs.Ktor.iOS)
                 implementation(Libs.SqlDelight.iOS)
                 configurations["kapt"].dependencies.add(DefaultExternalModuleDependency(
