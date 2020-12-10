@@ -45,6 +45,6 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.AndroidX.constraintLayout)
-    implementation(Dependencies.AndroidX.material)
+    implementation(Libs.AndroidX.constraintLayout)
+    implementation(Libs.AndroidX.material)
 }

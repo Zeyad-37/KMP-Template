@@ -1,6 +1,6 @@
-import Dependencies.AndroidX
-import Dependencies.Hilt
-import Dependencies.Testing.JUnit5
+import Libs.AndroidX
+import Libs.Hilt
+import Libs.Testing.JUnit5
 
 plugins {
     id("com.android.application")
@@ -66,8 +66,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
 
-    implementation(Dependencies.Kotlin.stdlib)
-    implementation(Dependencies.Kotlin.coroutinesAndroid)
+    implementation(Libs.Kotlin.stdlib)
+    implementation(Libs.Kotlin.coroutinesAndroid)
 
     implementation(AndroidX.material)
     implementation(AndroidX.appcompat)
@@ -89,16 +89,11 @@ dependencies {
     implementation(AndroidX.hiltLifecycleViewModel)
     kapt(AndroidX.hiltCompiler)
 
-    val reaktiveVersion = "1.1.17"
-    implementation("com.badoo.reaktive:reaktive:$reaktiveVersion")
-    implementation("com.badoo.reaktive:reaktive-annotations:$reaktiveVersion")
-    implementation("com.badoo.reaktive:coroutines-interop:$reaktiveVersion")
+    implementation(Libs.Reaktive.reaktive)
+    implementation(Libs.Reaktive.reaktiveAnnotation)
+    implementation(Libs.Reaktive.reaktiveInterop)
 
     implementation("io.github.reactivecircus.flowbinding:flowbinding-material:1.0.0-beta02")
-
-//    val flaggerVersion = "1.0.9"
-//    implementation("com.glovoapp.featureflagger:library:$flaggerVersion")
-//    kapt("com.glovoapp.featureflagger:compiler:$flaggerVersion")
 
     implementation("io.coil-kt:coil:1.0.0-rc3")
 
