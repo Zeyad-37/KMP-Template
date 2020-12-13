@@ -1,4 +1,4 @@
-package com.remote_first.splash
+package com.remote_first.shared.splash
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
@@ -9,7 +9,7 @@ import kotlinx.coroutines.FlowPreview
 
 @FlowPreview
 @ExperimentalCoroutinesApi
-class SplashVM @ViewModelInject constructor(
+actual class SplashVM @ViewModelInject constructor(
         splashInputHandler: SplashInputHandler, reducer: SplashReducer, @Assisted savedStateHandle: SavedStateHandle?,
 ) : FlowViewModel<SplashInput, SplashResult, SplashState, SplashEffect>(
         splashInputHandler, reducer, savedStateHandle

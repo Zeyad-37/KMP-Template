@@ -21,7 +21,7 @@ actual class InitializeUseCase @Inject constructor(@ApplicationContext val conte
                     && checkSelfPermission(context, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED) {
                 emit(NavToMain)
             } else {
-                emit(RequestPermissions)
+                emit(RequestPermissionsK)
             }
         }
     }

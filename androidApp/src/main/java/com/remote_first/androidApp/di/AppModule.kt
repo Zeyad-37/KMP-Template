@@ -17,6 +17,9 @@ import com.remote_first.shared.space_x.RocketLaunchDTOMapper
 import com.remote_first.shared.space_x.SpaceEffectUseCase
 import com.remote_first.shared.space_x.SpaceXApi
 import com.remote_first.shared.space_x.SpaceXRepo
+import com.remote_first.shared.splash.InitializeUseCase
+import com.remote_first.shared.splash.SplashInputHandler
+import com.remote_first.shared.splash.SplashReducer
 import com.squareup.sqldelight.db.SqlDriver
 import comremotefirstsharedcache.AppDatabaseQueries
 import dagger.Module
@@ -84,6 +87,15 @@ object AppModule {
 
     @Provides
     fun provideMainActivityContract(): IMainActivityIntentFactory = MainActivityIntentFactory()
+
+    @Provides
+    fun provideSplashInputHandler(initializeUseCase: InitializeUseCase) = SplashInputHandler(initializeUseCase)
+
+    @Provides
+    fun provideSplashReducer() = SplashReducer()
+
+    @Provides
+    fun provideInitializeUseCase(@ApplicationContext appContext: Context) = InitializeUseCase(appContext)
 
     @Provides
     @Singleton
