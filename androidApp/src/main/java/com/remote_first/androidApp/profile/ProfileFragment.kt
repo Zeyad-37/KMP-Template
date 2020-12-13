@@ -27,7 +27,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         lifecycleScope.launchWhenCreated {
-            profileVM.bind().observe().collect {
+            profileVM.bind(profileVM.provideInitialState()).observe().collect {
                 when (it) {
                     is ProfileState -> binding.bindState(it)
                     is ProfileEffect -> it.bindEffect()

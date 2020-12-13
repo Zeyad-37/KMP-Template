@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.lifecycle.lifecycleScope
-import com.remote_first.androidApp.databinding.ActivitySplashBinding
+import com.remote_first.splash.databinding.ActivitySplashBinding
 import com.remote_first.navigation.IMainActivityIntentFactory
 import com.remote_first.shared.flow_redux.Error
 import com.remote_first.shared.flow_redux.Progress
@@ -42,7 +42,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setupUI()
         lifecycleScope.launchWhenCreated {
-            splashVM.bind().observe().collect {
+            splashVM.bind(splashVM.provideInitialState()).observe().collect {
                 when (it) {
                     is SplashState -> binding.bindState(it)
                     is SplashEffect -> it.bindEffect()

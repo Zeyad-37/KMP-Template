@@ -7,6 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.badoo.reaktive.disposable.Disposable
 import com.badoo.reaktive.observable.Observable
+import com.badoo.reaktive.scheduler.Scheduler
 import com.badoo.reaktive.subject.publish.PublishSubject
 import com.remote_first.shared.flow_redux.ARG_STATE
 import com.remote_first.shared.flow_redux.Effect
@@ -25,6 +26,8 @@ actual abstract class RxViewModel<I : Input, R : Result, S : State, E : Effect>(
         override val inputHandler: InputHandler<I, S>,
         override val reducer: Reducer<S, R>,
         private val savedStateHandle: SavedStateHandle?,
+        override val computationScheduler: Scheduler = com.badoo.reaktive.scheduler.computationScheduler,
+        override val mainScheduler: Scheduler = com.badoo.reaktive.scheduler.mainScheduler,
 ) : IRxViewModel<I, R, S, E>, ViewModel() {
 
     override lateinit var disposable: Disposable
@@ -45,8 +48,8 @@ actual abstract class RxViewModel<I : Input, R : Result, S : State, E : Effect>(
     override val trackingListener: TrackingListener<I, R, S, E> = this.initTracking()
     override val loggingListener: LoggingListener<I, R, S, E> = this.initLogging()
 
-    override fun bind(inputs: () -> Observable<I>): RxViewModel<I, R, S, E> {
-        currentState = savedStateHandle?.get(ARG_STATE) ?: provideDefaultInitialState()
+    override fun bind(initialState: S, inputs: () -> Observable<I>): RxViewModel<I, R, S, E> {
+        currentState = savedStateHandle?.get(ARG_STATE) ?: initialState
         bindInputs(inputs)
         return this
     }

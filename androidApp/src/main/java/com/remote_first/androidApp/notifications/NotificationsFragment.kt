@@ -27,7 +27,7 @@ class NotificationsFragment : Fragment(R.layout.notifications_fragment) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         lifecycleScope.launchWhenCreated {
-            notificationVM.bind().observe().collect {
+            notificationVM.bind(notificationVM.provideInitialState()).observe().collect {
                 when (it) {
                     is NotificationsState -> binding.bindState(it)
                     is NotificationsEffect -> it.bindEffect()

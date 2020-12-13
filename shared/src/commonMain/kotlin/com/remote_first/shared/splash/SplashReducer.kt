@@ -5,7 +5,7 @@ import com.remote_first.shared.flow_redux.throwIllegalStateException
 
 class SplashReducer : Reducer<SplashState, SplashResult> {
     override fun reduce(state: SplashState, result: SplashResult): SplashState {
-//        return state
+        return state
         return when (state) {
             is InitialState -> when (result) {
                 is RequestPermissionsResult -> RequestPermissions

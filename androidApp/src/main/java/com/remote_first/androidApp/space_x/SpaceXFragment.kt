@@ -36,7 +36,7 @@ class SpaceXFragment : Fragment(R.layout.space_x_fragment) {
 //                }
 //            }
 //        }
-        spaceXVM.bind().observe(lifecycle) {
+        spaceXVM.bind(spaceXVM.provideInitialState()).observe(lifecycle) {
             states { binding.bindState((it as SpaceXState)) }
             effects { (it as SpaceXEffect).bindEffect() }
             progress { toggleLoadingViews(it.isLoading) }

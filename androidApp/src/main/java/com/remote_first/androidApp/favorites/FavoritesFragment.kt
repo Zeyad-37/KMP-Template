@@ -27,7 +27,7 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         lifecycleScope.launchWhenCreated {
-            favoritesVM.bind().observe().collect {
+            favoritesVM.bind(favoritesVM.provideInitialState()).observe().collect {
                 when (it) {
                     is FavoritesState -> binding.bindState(it)
                     is FavoritesEffect -> it.bindEffect()

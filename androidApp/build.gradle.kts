@@ -1,5 +1,8 @@
 import Libs.AndroidX
 import Libs.Hilt
+import Libs.Kotlin
+import Libs.Reaktive
+import Libs.Testing
 import Libs.Testing.JUnit5
 
 plugins {
@@ -39,6 +42,9 @@ android {
             isMinifyEnabled = false
         }
     }
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
     packagingOptions {
         exclude("META-INF/AL2.0")
         exclude("META-INF/LGPL2.1")
@@ -50,6 +56,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs = freeCompilerArgs + listOf(
+                "-Xopt-in=kotlin.time.ExperimentalTime",
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        )
     }
     buildFeatures {
         viewBinding = true
@@ -66,8 +76,8 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
 
-    implementation(Libs.Kotlin.stdlib)
-    implementation(Libs.Kotlin.coroutinesAndroid)
+    implementation(Kotlin.stdlib)
+    implementation(Kotlin.coroutinesAndroid)
 
     implementation(AndroidX.material)
     implementation(AndroidX.appcompat)
@@ -89,9 +99,9 @@ dependencies {
     implementation(AndroidX.hiltLifecycleViewModel)
     kapt(AndroidX.hiltCompiler)
 
-    implementation(Libs.Reaktive.reaktive)
-    implementation(Libs.Reaktive.reaktiveAnnotation)
-    implementation(Libs.Reaktive.reaktiveInterop)
+    implementation(Reaktive.reaktive)
+    implementation(Reaktive.reaktiveAnnotation)
+    implementation(Reaktive.reaktiveInterop)
 
     implementation("io.github.reactivecircus.flowbinding:flowbinding-material:1.0.0-beta02")
 
@@ -102,6 +112,13 @@ dependencies {
     testRuntimeOnly(JUnit5.vintageEngine)
     testImplementation(JUnit5.api)
     testImplementation(JUnit5.params)
+
+    testImplementation(Testing.coroutinesTest)
+    testImplementation(Testing.Mocking.nhaarman)
+    testImplementation(Testing.Mocking.core)
+    androidTestImplementation(Testing.Mocking.android)
+    testImplementation(Testing.Mocking.mockk)
+    testImplementation("app.cash.turbine:turbine:0.3.0")
 }
 
 kapt {

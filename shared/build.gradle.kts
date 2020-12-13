@@ -92,8 +92,17 @@ kotlin {
         }
         val androidTest by getting {
             dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.1")
+//                implementation(kotlin("test-junit"))
+//                implementation("junit:junit:4.13.1")
+                implementation(Libs.Testing.coroutinesTest)
+                implementation(Libs.Testing.Mocking.nhaarman)
+                implementation(Libs.Testing.Mocking.core)
+                implementation(Libs.Testing.Mocking.android)
+                implementation(Libs.Testing.Mocking.mockk)
+                implementation(Libs.Testing.JUnit5.api)
+                implementation(Libs.Testing.JUnit5.params)
+                runtimeOnly(Libs.Testing.JUnit5.jupiterEngine)
+                runtimeOnly(Libs.Testing.JUnit5.vintageEngine)
             }
         }
         val iosMain by getting {

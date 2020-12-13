@@ -1,6 +1,9 @@
 package com.remote_first.androidApp.di
 
 import android.content.Context
+import com.badoo.reaktive.scheduler.Scheduler
+import com.badoo.reaktive.scheduler.computationScheduler
+import com.badoo.reaktive.scheduler.mainScheduler
 import com.remote_first.androidApp.main.MainActivityIntentFactory
 import com.remote_first.androidApp.utils.ContextProvider
 import com.remote_first.navigation.IMainActivityIntentFactory
@@ -28,13 +31,19 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.ktor.client.HttpClient
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
 object AppModule {
+
+    const val MAIN = "main"
+    const val COMPUTATION = "computation"
 
     @Provides
     fun provideDatabaseDriverFactory(@ApplicationContext appContext: Context) = DatabaseDriverFactory(appContext)
@@ -103,4 +112,20 @@ object AppModule {
 
     @Provides
     fun provideEventBusService(eventBus: EventBus): EventBusService = EventBusService(eventBus)
+
+    @Provides
+    @Named(MAIN)
+    fun provideMainScheduler(): Scheduler = mainScheduler
+
+    @Provides
+    @Named(COMPUTATION)
+    fun provideComputationScheduler(): Scheduler = computationScheduler
+
+    @Provides
+    @Named(MAIN)
+    fun provideMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
+
+    @Provides
+    @Named(COMPUTATION)
+    fun provideComputationDispatcher(): CoroutineDispatcher = Dispatchers.Default
 }

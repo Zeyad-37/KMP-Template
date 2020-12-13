@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setupUI()
         lifecycleScope.launchWhenCreated {
-            mainVM.bind().observe().collect {
+            mainVM.bind(mainVM.provideInitialState()).observe().collect {
                 when (it) {
                     is MainState -> binding.bindState(it)
                     is MainEffect -> it.bindEffect()

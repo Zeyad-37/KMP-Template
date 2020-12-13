@@ -16,5 +16,5 @@ class ExploreVM @ViewModelInject constructor(
 ) : FlowViewModel<ExploreInput, ExploreResult, ExploreState, ExploreEffect>(
         exploreInputHandler, exploreReducer, savedStateHandle
 ) {
-    override fun provideDefaultInitialState() = InitialState
+    fun provideInitialState() = InitialState
 }

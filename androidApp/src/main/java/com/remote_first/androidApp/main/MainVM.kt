@@ -32,7 +32,7 @@ class MainVM @ViewModelInject constructor(
 
     fun processTabClicked(tabId: Int) = process(TabClicked(tabId))
 
-    override fun provideDefaultInitialState() = MainState(SPACE_X_TAB_INDEX,
+    fun provideInitialState() = MainState(SPACE_X_TAB_INDEX,
             contextProvider.context.getString(R.string.space_x_tab_title))
 
     override fun inputSource(): Flow<MainInput> =

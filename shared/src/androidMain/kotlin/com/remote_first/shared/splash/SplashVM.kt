@@ -14,7 +14,7 @@ actual class SplashVM @ViewModelInject constructor(
 ) : FlowViewModel<SplashInput, SplashResult, SplashState, SplashEffect>(
         splashInputHandler, reducer, savedStateHandle
 ) {
-    override fun provideDefaultInitialState() = InitialState
+    fun provideInitialState() = InitialState
 
     fun processInitialize() = process(Initialize)
 }

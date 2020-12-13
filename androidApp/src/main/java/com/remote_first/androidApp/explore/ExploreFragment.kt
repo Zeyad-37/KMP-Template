@@ -27,7 +27,7 @@ class ExploreFragment : Fragment(R.layout.explore_fragment) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         lifecycleScope.launchWhenCreated {
-            exploreVM.bind().observe().collect {
+            exploreVM.bind(exploreVM.provideInitialState()).observe().collect {
                 when (it) {
                     is ExploreState -> binding.bindState(it)
                     is ExploreEffect -> it.bindEffect()

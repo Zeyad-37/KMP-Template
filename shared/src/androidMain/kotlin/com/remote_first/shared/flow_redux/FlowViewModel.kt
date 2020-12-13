@@ -6,7 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.remote_first.shared.flow_redux.InputStrategy.DEBOUNCE
 import com.remote_first.shared.flow_redux.InputStrategy.NONE
 import com.remote_first.shared.flow_redux.InputStrategy.THROTTLE
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -21,10 +23,11 @@ actual abstract class FlowViewModel<I : Input, R : Result, S : State, E : Effect
         override val inputHandler: InputHandler<I, S>,
         override val reducer: Reducer<S, R>,
         var savedStateHandle: SavedStateHandle?,
+        override val computationDispatcher: CoroutineDispatcher = Dispatchers.Default,
+        override val mainDispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : IFlowViewModel<I, R, S, E>, ViewModel() {
 
     override lateinit var currentState: S
-    override lateinit var viewModelListener: MutableStateFlow<Output>
     override lateinit var scope: CoroutineScope
 
     override var trackingListener: TrackingListener<I, R, S, E> = this.initTracking()
@@ -34,21 +37,19 @@ actual abstract class FlowViewModel<I : Input, R : Result, S : State, E : Effect
                 if (newValue != oldValue) notifyProgressChanged(newValue)
             })
 
+    override val viewModelListener: MutableStateFlow<Output> by lazy { MutableStateFlow(currentState as Output) }
     override val inputs: MutableSharedFlow<I> = MutableSharedFlow()
     override val throttledInputs: MutableSharedFlow<I> = MutableSharedFlow()
     override val debouncedInputs: MutableSharedFlow<I> = MutableSharedFlow()
 
-    override fun bind(inputs: () -> MutableSharedFlow<I>): FlowViewModel<I, R, S, E> {
-        currentState = savedStateHandle?.get(ARG_STATE) ?: provideDefaultInitialState()
+    override fun bind(initialState: S, inputs: () -> MutableSharedFlow<I>): FlowViewModel<I, R, S, E> {
+        currentState = savedStateHandle?.get(ARG_STATE) ?: initialState
         this.scope = viewModelScope
         bindInputs(inputs)
         return this
     }
 
-    fun observe(): StateFlow<Output> {
-        viewModelListener = MutableStateFlow(currentState as Output)
-        return viewModelListener
-    }
+    fun observe(): StateFlow<Output> = viewModelListener
 
     override fun process(input: I, inputStrategy: InputStrategy) {
         scope.launch {

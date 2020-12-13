@@ -23,19 +23,19 @@ class MainInputHandler @Inject constructor(private val contextProvider: ContextP
     override fun handleInputs(input: MainInput, state: MainState): Flow<RxOutcome> {
         return when (input) {
             is TabClicked -> {
-                val title = mapIndexToTitle(input.tabIndex)
-                TabClickResult(input.tabIndex, title).toResultFlow()
+                val (index, title) = mapIdToIndexAndTitle(input.tabId)
+                TabClickResult(index, title).toResultFlow()
             }
         }
     }
 
-    private fun mapIndexToTitle(tabIndex: Int): String {
+    private fun mapIdToIndexAndTitle(tabIndex: Int): Pair<Int, String> {
         return when (tabIndex) {
-            SPACE_X_TAB_INDEX -> contextProvider.context.getString(R.string.space_x_tab_title)
-            EXPLORE_TAB_INDEX -> contextProvider.context.getString(R.string.explore_tab_title)
-            SUMMARY_TAB_INDEX -> contextProvider.context.getString(R.string.summary)
-            NOTIFICATIONS_TAB_INDEX -> contextProvider.context.getString(R.string.notifications)
-            PROFILE_TAB_INDEX -> contextProvider.context.getString(R.string.profile)
+            R.id.action_space_x -> SPACE_X_TAB_INDEX to contextProvider.context.getString(R.string.space_x_tab_title)
+            R.id.action_explore -> EXPLORE_TAB_INDEX to contextProvider.context.getString(R.string.explore_tab_title)
+            R.id.action_summary -> SUMMARY_TAB_INDEX to contextProvider.context.getString(R.string.summary)
+            R.id.action_notifications -> NOTIFICATIONS_TAB_INDEX to contextProvider.context.getString(R.string.notifications)
+            R.id.action_profile -> PROFILE_TAB_INDEX to contextProvider.context.getString(R.string.profile)
             else -> throw IndexOutOfBoundsException("Unexpected tabIndex, cannot map tabIndex: $tabIndex to a title")
         }
     }

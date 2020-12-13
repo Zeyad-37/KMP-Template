@@ -20,8 +20,7 @@ import com.badoo.reaktive.observable.startWithValue
 import com.badoo.reaktive.observable.subscribe
 import com.badoo.reaktive.observable.threadLocal
 import com.badoo.reaktive.observable.throttle
-import com.badoo.reaktive.scheduler.computationScheduler
-import com.badoo.reaktive.scheduler.mainScheduler
+import com.badoo.reaktive.scheduler.Scheduler
 import com.badoo.reaktive.subject.publish.PublishSubject
 import com.github.aakira.napier.Napier
 import com.remote_first.shared.flow_redux.Effect
@@ -63,6 +62,8 @@ interface IRxViewModel<I : Input, R : Result, S : State, E : Effect> {
     val debouncedInputs: PublishSubject<I>
     val inputHandler: InputHandler<I, S>
     val reducer: Reducer<S, R>
+    val computationScheduler: Scheduler
+    val mainScheduler: Scheduler
 
     /**
      * Input source provider. By default it returns empty
@@ -76,9 +77,7 @@ interface IRxViewModel<I : Input, R : Result, S : State, E : Effect> {
         InputStrategy.DEBOUNCE -> debouncedInputs
     }.onNext(input)
 
-    fun provideDefaultInitialState(): S
-
-    fun bind(inputs: () -> Observable<I> = { observable {} }): IRxViewModel<I, R, S, E>
+    fun bind(initialState: S, inputs: () -> Observable<I> = { observable {} }): IRxViewModel<I, R, S, E>
 
     fun saveState(state: S)
 

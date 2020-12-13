@@ -31,8 +31,8 @@ actual abstract class FlowViewModel<I : Input, R : Result, S : State, E : Effect
 
 //    private var savedStateHandle: SavedStateHandle? = null TODO
 
-    override fun bind(inputs: () -> MutableSharedFlow<I>): FlowViewModel<I, R, S, E> {
-        currentState = /*savedStateHandle?.get(ARG_STATE) ?:*/ provideDefaultInitialState()
+    override fun bind(intialState: S, inputs: () -> MutableSharedFlow<I>): FlowViewModel<I, R, S, E> {
+        currentState = /*savedStateHandle?.get(ARG_STATE) ?:*/ intialState
         scope = TODO()
         bindInputs(inputs)
         return this

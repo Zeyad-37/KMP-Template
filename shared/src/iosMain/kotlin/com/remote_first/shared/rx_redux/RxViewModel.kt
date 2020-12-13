@@ -39,8 +39,8 @@ actual abstract class RxViewModel<I : Input, R : Result, S : State, E : Effect>(
 
 //    private var savedStateHandle: SavedStateHandle? = null TODO
 
-    override fun bind(inputs: () -> Observable<I>): RxViewModel<I, R, S, E> {
-        currentState = /*savedStateHandle?.get(ARG_STATE) ?:*/ provideDefaultInitialState()
+    override fun bind(initialState: S, inputs: () -> Observable<I>): RxViewModel<I, R, S, E> {
+        currentState = /*savedStateHandle?.get(ARG_STATE) ?:*/ initialState
         bindInputs(inputs)
         return this
     }

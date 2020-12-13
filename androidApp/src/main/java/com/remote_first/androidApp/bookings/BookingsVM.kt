@@ -16,5 +16,5 @@ class BookingsVM @ViewModelInject constructor(
 ) : FlowViewModel<BookingsInput, BookingsResult, BookingsState, BookingsEffect>(
         bookingsInputHandler, bookingsReducer, savedStateHandle
 ) {
-    override fun provideDefaultInitialState() = InitialState
+    fun provideInitialState() = InitialState
 }

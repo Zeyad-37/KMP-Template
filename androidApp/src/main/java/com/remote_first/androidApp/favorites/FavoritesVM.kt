@@ -16,5 +16,5 @@ class FavoritesVM @ViewModelInject constructor(
 ) : FlowViewModel<FavoritesInput, FavoritesResult, FavoritesState, FavoritesEffect>(
         bookingsInputHandler, bookingsReducer, savedStateHandle
 ) {
-    override fun provideDefaultInitialState() = InitialState
+    fun provideInitialState() = InitialState
 }

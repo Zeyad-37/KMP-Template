@@ -2,8 +2,8 @@ package com.remote_first.shared.flow_redux
 
 import com.github.aakira.napier.Napier
 import com.remote_first.shared.flow_redux.InputStrategy.*
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -60,17 +60,19 @@ interface IFlowViewModel<I : Input, R : Result, S : State, E : Effect> {
     data class RxResult<R>(val result: R) : RxOutcome()
 
     var currentState: S
-    var viewModelListener: MutableStateFlow<Output>
     var trackingListener: TrackingListener<I, R, S, E>
     var loggingListener: LoggingListener<I, R, S, E>
     var progress: Progress
     var scope: CoroutineScope
 
+    val viewModelListener: MutableStateFlow<Output>
     val inputs: MutableSharedFlow<I>
     val throttledInputs: MutableSharedFlow<I>
     val debouncedInputs: MutableSharedFlow<I>
     val inputHandler: InputHandler<I, S>
     val reducer: Reducer<S, R>
+    val computationDispatcher: CoroutineDispatcher
+    val mainDispatcher: CoroutineDispatcher
 
     /**
      * Input source provider. By default it returns empty
@@ -80,9 +82,7 @@ interface IFlowViewModel<I : Input, R : Result, S : State, E : Effect> {
 
     fun process(input: I, inputStrategy: InputStrategy = NONE)
 
-    fun provideDefaultInitialState(): S
-
-    fun bind(inputs: () -> MutableSharedFlow<I> = { MutableSharedFlow() }): IFlowViewModel<I, R, S, E>
+    fun bind(initialState: S, inputs: () -> MutableSharedFlow<I> = { MutableSharedFlow() }): IFlowViewModel<I, R, S, E>
 
     fun saveState(state: S)
 
@@ -101,7 +101,7 @@ interface IFlowViewModel<I : Input, R : Result, S : State, E : Effect> {
     fun track(): TrackingListenerHelper<I, R, S, E>.() -> Unit = { /*empty*/ }
 
     fun bindInputs(inputs: () -> MutableSharedFlow<I>) {
-        scope.launch(Dispatchers.Main) {
+        scope.launch(mainDispatcher) {
             val outcome = createOutcomes(inputs)
             val stateResult = outcome.filter { it is RxResult<*> }.map { it as RxResult<R> }
                     .scan(RxState(currentState)) { state: RxState<S>, result: RxResult<R> ->
@@ -114,7 +114,7 @@ interface IFlowViewModel<I : Input, R : Result, S : State, E : Effect> {
                     .onEach {
                         trackEvents(it)
                         logEvents(it)
-                    }.flowOn(Dispatchers.Default)
+                    }.flowOn(computationDispatcher)
                     .collect { handleResult(it) }
         }
     }

@@ -27,7 +27,7 @@ class BookingsFragment : Fragment(R.layout.bookings_fragment) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         lifecycleScope.launchWhenCreated {
-            bookingsVM.bind().observe().collect {
+            bookingsVM.bind(bookingsVM.provideInitialState()).observe().collect {
                 when (it) {
                     is BookingsState -> binding.bindState(it)
                     is BookingsEffect -> it.bindEffect()

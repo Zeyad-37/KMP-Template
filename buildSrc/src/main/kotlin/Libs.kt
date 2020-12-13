@@ -1,6 +1,7 @@
 import Versions.coroutinesVersion
 import Versions.hiltVersion
 import Versions.hiltXVersion
+import Versions.junit5Version
 import Versions.kotlinVersion
 import Versions.ktorVersion
 import Versions.lifeCycleVersion
@@ -9,7 +10,7 @@ import Versions.serializationVersion
 import Versions.sqlDelightVersion
 
 object Versions {
-    const val kotlinVersion = "1.4.20"
+    const val kotlinVersion = "1.4.21"
     const val stetho = "1.5.1"
     const val lottie = "3.5.0"
     const val leakCanary = "2.0"
@@ -136,12 +137,40 @@ object Libs {
 
     object Testing {
 
+        val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+        val uiAutomator = "com.android.support.test.uiautomator:uiautomator-v18:2.1.3"
+        val wiremock = "com.github.tomakehurst:wiremock:2.25.1"
+        val barista = "com.schibsted.spain:barista:3.6.0"
+
+        object Android {
+            val core = "androidx.test:core:1.3.0"
+            val junit = "androidx.test.ext:junit:1.1.1"
+            val junit_ktx = "androidx.test.ext:junit-ktx:1.1.1"
+            val espresso_core = "androidx.test.espresso:espresso-core:3.2.0"
+            val runner = "androidx.test:runner:1.2.0"
+            val rules = "androidx.test:rules:1.2.0"
+            val fragment_testing = "androidx.fragment:fragment-testing:1.2.5"
+            val core_testing = "androidx.arch.core:core-testing:2.1.0"
+        }
+
+        object Robolectric {
+            val robolectric = "org.robolectric:robolectric:4.4"
+            val shadowsMultidex = "org.robolectric:shadows-multidex:4.3.1"
+        }
+
+        object Mocking {
+            val core = "org.mockito:mockito-core:3.6.28"
+            val android = "org.mockito:mockito-android:3.6.28"
+            val nhaarman = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+            val mockk = "io.mockk:mockk:1.10.3"
+        }
+
         object JUnit5 {
-            val api = "org.junit.jupiter:junit-jupiter-api:${Versions.junit5Version}"
-            val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit5Version}"
-            val vintageEngine = "org.junit.vintage:junit-vintage-engine:${Versions.junit5Version}"
-            val migrationSupport = "org.junit.jupiter:junit-jupiter-migrationsupport:${Versions.junit5Version}"
-            val params = "org.junit.jupiter:junit-jupiter-params:${Versions.junit5Version}"
+            val api = "org.junit.jupiter:junit-jupiter-api:$junit5Version"
+            val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:$junit5Version"
+            val vintageEngine = "org.junit.vintage:junit-vintage-engine:$junit5Version"
+            val migrationSupport = "org.junit.jupiter:junit-jupiter-migrationsupport:$junit5Version"
+            val params = "org.junit.jupiter:junit-jupiter-params:$junit5Version"
             val androidTestRunner = "de.mannodermaus.junit5:android-test-runner:1.2.0"
         }
     }

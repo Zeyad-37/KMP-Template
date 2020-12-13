@@ -16,5 +16,5 @@ class ProfileVM @ViewModelInject constructor(
 ) : FlowViewModel<ProfileInput, ProfileResult, ProfileState, ProfileEffect>(
         profileInputHandler, profileReducer, savedStateHandle
 ) {
-    override fun provideDefaultInitialState() = InitialState
+    fun provideInitialState() = InitialState
 }

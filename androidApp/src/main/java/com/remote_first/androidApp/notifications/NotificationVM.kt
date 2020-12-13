@@ -16,5 +16,5 @@ class NotificationVM @ViewModelInject constructor(
 ) : FlowViewModel<NotificationsInput, NotificationsResult, NotificationsState, NotificationsEffect>(
         notificationsInputHandler, notificationsReducer, savedStateHandle
 ) {
-    override fun provideDefaultInitialState() = InitialState
+    fun provideInitialState() = InitialState
 }

@@ -22,4 +22,4 @@ data class Links(
         val articleUrl: String?,
 )
 
-object SpaceEffect
+object SpaceEffectK
